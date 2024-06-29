@@ -4,7 +4,7 @@ import { gluten } from '@/app/lib/language'
 
 const Header = () => {
     return (
-        <nav className="px-8 flex flex-row-reverse sm:flex-row gap-x-4 fixed z-20 left-[10vw] sm:left-[5vw] lg:left-[3vw] w-[80vw] sm:w-[90vw] lg:w-[94vw] h-24 border-yellow-300 border-2 rounded-full bg-yellow-300 items-center justify-between shadow-2xl shadow-black/50">
+        <nav className="px-8 flex flex-row-reverse sm:flex-row gap-x-4 fixed z-20 left-[5vw] sm:left-[5vw] lg:left-[3vw] w-[90vw] sm:w-[90vw] lg:w-[94vw] h-24 border-yellow-300 border-2 rounded-full bg-yellow-300 items-center justify-between shadow-2xl shadow-black/50">
             <NavigationDropdown />
             <div className={`{${gluten.className} text-base`}>ExamMeter.in</div>
             <p className=" font-bold tracking-wider  flex-auto items-center gap-x-4 w-full justify-end hidden sm:flex" >

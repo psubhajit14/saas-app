@@ -22,7 +22,7 @@ const NavigationDropdown = () => {
     }, [pathName]);
     return (
         <div className="hs-dropdown relative inline-flex [--strategy:absolute]">
-            <button id="hs-dropdown-unstyled" className="hs-dropdown-toggle inline-flex items-center gap-2 rounded-md bg-gray-800 py-1.5 px-3 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+            <button id="hs-dropdown-unstyled" name='menu' className="hs-dropdown-toggle inline-flex items-center gap-2 rounded-md bg-gray-800 py-1.5 px-3 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
                 <Bars3BottomRightIcon className="size-7 fill-white" />
             </button>
             <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden z-10 top-0 lg:start-0 lg:end-auto min-w-48 divide-y divide-gray-200 items-center gap-2 rounded-md bg-gray-800/80 py-1.5 px-1 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white group-hover:bg-white/20" aria-labelledby="hs-dropdown-unstyled">

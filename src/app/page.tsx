@@ -3,17 +3,17 @@ import dynamic from 'next/dynamic'
 const DynamicHeader = dynamic(() => import('./components/header/Header'), {
   ssr: false,
 })
-import Footer from "./components/section/Footer";
-import Hero from "./components/section/Hero";
-import HowItWorks from "./components/section/HowItWorks";
-import Pricing from "./components/section/Pricing";
-import Testimonials from "./components/section/Testimonials";
-import WhyExamMeter from "./components/section/WhyExamMeter";
+import Footer from "./components/section/landing/Footer";
+import Hero from "./components/section/landing/Hero";
+import HowItWorks from "./components/section/landing/HowItWorks";
+import Pricing from "./components/section/landing/Pricing";
+import Testimonials from "./components/section/landing/Testimonials";
+import WhyExamMeter from "./components/section/landing/WhyExamMeter";
 
 export default function Home() {
   return (
-    <main>
-      <div className="bg-black p-8">
+    <main className=''>
+      <div className="bg-black px-0 py-4 md:p-8">
         <DynamicHeader />
         <Hero />
       </div>
@@ -21,10 +21,10 @@ export default function Home() {
         <WhyExamMeter />
         <HowItWorks />
       </div>
-      <div className="bg-black p-8">
+      <div className="bg-black p-2 md:p-8">
         <Testimonials />
       </div>
-      <div className="p-8">
+      <div className="p-2 md:p-8">
         <Pricing />
         <Footer />
       </div>
