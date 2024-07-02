@@ -5,18 +5,20 @@ const PriceCard = ({ name, description, price, features, discount }: {
     name: string, description: string, price: number, features: string[], discount?: number
 }) => {
     return (
-        <div className='static md:relative flex flex-col gap-y-2 bg-yellow-300 md:bg-yellow-300/10 text-black backdrop-blur-md rounded-lg p-4 pb-8 shadow-2xl shadow-black/50'>
+        <div className='static flex flex-col gap-y-2 bg-yellow-300 md:bg-yellow-300/10 text-black backdrop-blur-md rounded-lg p-4 shadow-2xl shadow-black/50'>
             <p className='flex items-center gap-x-3 font-bold text-black text-base'>{name} {discount &&
                 <span className='bg-red-300 px-2 py-1 rounded-sm text-black text-[12px]'>{discount}% Off</span>
             }</p>
             <p className='font-thin text-gray-700 text-[12px]'>{description}</p>
-            <p className='text-[12px] pb-4 text-slate-400'>₹
+            <p className='text-[12px] text-slate-400'>₹
                 {discount &&
                     < span className='line-through'> {(price * (1 + (discount / 100))).toFixed(2)}</span>
-                }&nbsp;<span className='text-black font-extrabold text-sm'>{price.toFixed(2)}</span> INR<br /><br />
+                }&nbsp;<span className='text-black font-extrabold text-sm'>{price.toFixed(2)}</span> INR
             </p>
-            {/* Features */}
 
+            <button className='md:hidden bg-white rounded-lg px-4 py-2 w-full'>Buy Now</button>
+            {/* Features */}
+            <br />
             <div className='flex flex-col gap-y-2 '>
                 {features.map(feature => (
                     <div className='flex gap-x-2 items-baseline ' key={feature}>
@@ -26,7 +28,7 @@ const PriceCard = ({ name, description, price, features, discount }: {
                 ))}
 
             </div>
-            <button className='absolute top-4 md:top-auto md:-bottom-8 right-4 md:right-0 inline-block md:flex justify-center w-max md:w-full z-20 bg-white md:bg-yellow-300 hover:text-yellow-300 md:hover:text-white px-4 py-2 rounded-t-md md:rounded-t-none rounded-b-md md:rounded-b-md shadow-2xl shadow-black/50'>Buy Now</button>
+            <button className='invisible md:visible md:bg-yellow-300 rounded-lg px-4 py-2 w-[25vw]'>Buy Now</button>
         </div >
     )
 }

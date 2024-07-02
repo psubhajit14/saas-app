@@ -1,7 +1,7 @@
 import React from 'react'
-import { Socials } from './Testimonials'
+import { Socials } from '../landing/Testimonials'
 import Image from 'next/image'
-import ExamMeterLogo from '../../assets/EXAM_METER_LOGO_transparent.png'
+import ExamMeterLogo from '../../../assets/EXAM_METER_LOGO_transparent.png'
 
 const Footer = () => {
     return (

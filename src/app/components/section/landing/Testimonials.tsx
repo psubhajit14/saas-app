@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import ProfilePic from "../../assets/pexels-krishna-19867588.jpg";
-import FB from '../../assets/Facebook_logo.svg'
-import YT from '../../assets/Youtube_logo.svg'
-import IG from '../../assets/Instagram_logo.svg'
-import LI from '../../assets/LinkedIn_logo.svg'
-import X from '../../assets/X_logo.svg'
+import ProfilePic from "../../../assets/pexels-krishna-19867588.jpg";
+import FB from '../../../assets/Facebook_logo.svg'
+import YT from '../../../assets/Youtube_logo.svg'
+import IG from '../../../assets/Instagram_logo.svg'
+import LI from '../../../assets/LinkedIn_logo.svg'
+import X from '../../../assets/X_logo.svg'
 
 export const Socials = ({ size = 'base' }: { size?: 'base' | 'xs' }) => {
     const iconSize = (size == 'base' ? 1 : 1 / 2) * 48;
