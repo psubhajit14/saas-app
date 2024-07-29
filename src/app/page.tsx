@@ -1,15 +1,15 @@
 import dynamic from 'next/dynamic'
 
-const DynamicHeader = dynamic(() => import('./components/header/Header'), {
+
+import Footer from "../components/landing/section/Footer";
+import Hero from "../components/landing/section/Hero";
+import HowItWorks from "../components/landing/section/HowItWorks";
+import Pricing from "../components/landing/section/Pricing";
+import Testimonials from "../components/landing/section/Testimonials";
+import WhyExamMeter from "../components/landing/section/WhyExamMeter";
+const DynamicHeader = dynamic(() => import('../components/landing/header/Header'), {
   ssr: false,
 })
-import Footer from "./components/section/landing/Footer";
-import Hero from "./components/section/landing/Hero";
-import HowItWorks from "./components/section/landing/HowItWorks";
-import Pricing from "./components/section/landing/Pricing";
-import Testimonials from "./components/section/landing/Testimonials";
-import WhyExamMeter from "./components/section/landing/WhyExamMeter";
-
 export default function Home() {
   return (
     <main className=''>
