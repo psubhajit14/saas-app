@@ -32,46 +32,43 @@ const Verify = () => {
             code: "",
         },
     })
+    async function onSubmit({ code }: z.infer<typeof verifySchema>) {
+        const { success, message } =
+            await (
+                await fetch(
+                    '/api/auth/verify-code/',
+                    {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            username,
+                            code,
+                        }),
+                    }
+                )
+            ).json();
+
+        if (!success) {
+            toast(({
+                title: 'Verification Failed',
+                description: message,
+                variant: "destructive"
+            }))
+        } else {
+            toast(({
+                title: 'You have been verified successfully',
+                description: message,
+            }))
+            router.replace('/');
+        }
+    }
     if (username == null) {
         toast(({
             title: 'No user found',
             description: "No user found in the URL / URL invalid"
         }))
         router.replace("/sign-up")
-    }
-    else {
 
-
-        async function onSubmit({ code }: z.infer<typeof verifySchema>) {
-            const { success, message } =
-                await (
-                    await fetch(
-                        '/api/auth/verify-code/',
-                        {
-                            method: 'POST',
-                            body: JSON.stringify({
-                                username,
-                                code,
-                            }),
-                        }
-                    )
-                ).json();
-
-            if (!success) {
-                toast(({
-                    title: 'Verification Failed',
-                    description: message,
-                    variant: "destructive"
-                }))
-            } else {
-                toast(({
-                    title: 'You have been verified successfully',
-                    description: message,
-                }))
-                router.replace('/');
-            }
-        }
-
+    } else {
         return (
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">

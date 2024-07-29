@@ -49,7 +49,7 @@ const SignUp = () => {
                 title: 'Sign Up',
                 description: message,
             }))
-            router.replace('/sign-up/verify/');
+            router.replace('/verify/');
         }
     }
     const [showPassword, setShowPassword] = useState<boolean>(false)
