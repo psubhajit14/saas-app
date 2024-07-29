@@ -65,7 +65,7 @@ const SignUp = () => {
                 setError("username", { message });
             }
         }
-    }, [])
+    }, [setError])
     const debouncedVerify = useMemo(() => _.debounce(verifyUsernameExist, 3000), [verifyUsernameExist])
 
     return (

@@ -26,6 +26,12 @@ const Verify = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const username = searchParams.get("username")
+    const form = useForm<z.infer<typeof verifySchema>>({
+        resolver: zodResolver(verifySchema),
+        defaultValues: {
+            code: "",
+        },
+    })
     if (username == null) {
         toast(({
             title: 'No user found',
@@ -34,12 +40,7 @@ const Verify = () => {
         router.replace("/sign-up")
     }
     else {
-        const form = useForm<z.infer<typeof verifySchema>>({
-            resolver: zodResolver(verifySchema),
-            defaultValues: {
-                code: "",
-            },
-        })
+
 
         async function onSubmit({ code }: z.infer<typeof verifySchema>) {
             const { success, message } =
