@@ -29,5 +29,6 @@ export const config = {
         '/sign-up',
         '/verify',
         '/dashboard/:path*',
+        '/check-username-unique',
     ]
 }

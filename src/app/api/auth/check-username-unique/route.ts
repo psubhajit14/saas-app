@@ -3,14 +3,16 @@ import UserModel from "@/models/userModel"
 import { z } from 'zod'
 
 import { usernameValidation } from '@/schemas/auth/signUpSchema'
+import { NextApiRequest } from "next"
+import { NextRequest } from "next/server"
 const UsernameQuerySchema = z.object({
     username: usernameValidation
 })
-
-export async function GET(request: Request) {
+export const dynamic = 'force-dynamic'
+export async function GET(request: NextRequest) {
     await dbConnect();
     try {
-        const { searchParams } = new URL(request.url);
+        const searchParams = request.nextUrl.searchParams;
         const queryParams = {
             username: searchParams.get('username'),
         }
