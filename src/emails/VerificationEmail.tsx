@@ -25,7 +25,7 @@ export default function VerificationEmailTemplate({ username, otp }: Verificatio
             <Preview>Here&apos;s your verification code: {otp}</Preview>
             <Section>
                 <Row>
-                    <Heading as='h2'>Hello {username},</Heading>
+                    <Text>Hello {username}</Text>
                 </Row>
                 <Row>
                     <Text>

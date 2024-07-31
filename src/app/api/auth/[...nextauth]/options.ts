@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
+import NextAuth, { Account, NextAuthOptions, Profile, User } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
@@ -6,6 +6,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcrypt'
 import dbConnect from "@/config/db"
 import UserModel from "@/models/userModel"
+import { redirect } from "next/navigation"
 
 export const authOptions: NextAuthOptions = {
     // Configure one or more authentication providers
@@ -34,19 +35,18 @@ export const authOptions: NextAuthOptions = {
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                email: { label: "Email", type: "text", placeholder: "jsmith@das.com" },
+                identifier: { label: "Email", type: "text", placeholder: "jsmith@das.com" },
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req): Promise<any> {
                 await dbConnect();
                 try {
-                    const user = await UserModel.findOne({
-                        $or: [
-                            { email: credentials?.email },
-                        ]
-                    })
+                    const user = await UserModel.findOne(
+                        {
+                            $or: [{ email: credentials?.identifier }, { username: credentials?.identifier }]
+                        })
                     if (!user) {
-                        throw new Error("No user found with the Email-Id");
+                        throw new Error("No user found with the username or Email-Id");
                     }
                     if (!user.isVerified) {
                         throw new Error("User is not verified. Please verify before Sign In");
@@ -65,6 +65,24 @@ export const authOptions: NextAuthOptions = {
         ),
     ],
     callbacks: {
+        async signIn({ user, account, profile }) {
+            if (account?.provider === 'google') {
+                await dbConnect();
+                const isExistingUser = await UserModel.findOne({
+                    email: user.email
+                })
+                if (!isExistingUser) {
+                    const newUser = new UserModel({
+                        username: user.name,
+                        email: user.email,
+                        isVerified: user.isVerified
+                    })
+                    await newUser.save();
+                }
+                return true;
+            }
+            return true;
+        },
         async jwt({ token, user }) {
             if (user) {
                 token._id = user._id?.toString();
@@ -85,7 +103,7 @@ export const authOptions: NextAuthOptions = {
         }
     },
     pages: {
-        signIn: '/sign-in'
+        signIn: '/sign-in',
     },
     session: {
         strategy: "jwt"

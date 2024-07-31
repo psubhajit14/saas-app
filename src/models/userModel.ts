@@ -11,6 +11,7 @@ export interface User extends Document {
     email: string;
     password: string;
     isVerified?: boolean;
+    signInMethod: string;
     isAdmin: boolean;
     role: UserRole;
     forgotPasswordToken: String,
@@ -35,12 +36,12 @@ const userSchema: Schema<User> = new Schema({
     },
     password: {
         type: String,
-        required: [true, "Please provide a password"],
     },
     isVerified: {
         type: Boolean,
         default: false
     },
+    signInMethod: String,
     isAdmin: {
         type: Boolean,
         default: false

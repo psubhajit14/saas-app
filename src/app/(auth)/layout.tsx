@@ -7,7 +7,6 @@ const AuthLayout = ({
 }>) => {
     return (
         <div className='flex flex-col justify-center m-auto h-[90vh] w-[80vw] gap-y-8'>
-            <header className='text-center text-xl'>Sign up to ExamMeter.in</header>
             <Suspense>
                 {children}
             </Suspense>
